@@ -6,13 +6,17 @@ import javax.servlet.http.*;
 
 import murach.business.User;
 
-
 public class EmailListServlet extends HttpServlet  {
 
     @Override
     protected void doPost(HttpServletRequest request, 
                           HttpServletResponse response) 
                           throws ServletException, IOException {
+
+        // Thiết lập encoding cho request và response
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         String url = "/index.html";
 
@@ -21,6 +25,7 @@ public class EmailListServlet extends HttpServlet  {
         if (action == null) {
             action = "join";  // default action
         }
+
         // perform action and set URL to appropriate page
         if (action.equals("join")) {
             url = "/index.html";    // the "join" page
@@ -44,6 +49,7 @@ public class EmailListServlet extends HttpServlet  {
             .getRequestDispatcher(url)
             .forward(request, response);
     }    
+
     @Override
     protected void doGet(HttpServletRequest request, 
                          HttpServletResponse response) 
